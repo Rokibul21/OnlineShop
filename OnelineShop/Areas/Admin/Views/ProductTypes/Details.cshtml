@@ -1,0 +1,24 @@
+﻿@model OnelineShop.Models.ProductTypes
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="text-info">ProductTypes Details</h2>
+
+<div>
+    <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProductType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ProductType)
+            </dd>
+        </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> 
+    <label></label>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>

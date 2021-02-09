@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OnelineShop.Models.SpacialTag>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-info">Special Tag</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table border table-striped">
+    <thead class="table-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <partial name="_ButtomViewPartial" model="item.Id" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var save = '@TempData["Save"]'
+            if (save != null) {
+                alertify.success(save);
+            }
+        })
+    </script>
+}
