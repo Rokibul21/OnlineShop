@@ -26,18 +26,25 @@ namespace OnelineShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var applicationDbContext = _context.Products.Include(p => p.ProductType).Include(p => p.SpacialTag);
-            return View(await applicationDbContext.ToListAsync());
+            return View(applicationDbContext.ToList());
         }
         //Post For Index
-        public IActionResult Index(decimal lowAmount,decimal largAmount)
+        [HttpPost]
+        public IActionResult Index(decimal? lowAmount,decimal? largAmount)
         {
-            var products = _context.Products
-                .Include(c => c.ProductTypes)
-                .Include(c => c.SpacialTag).Where(c => c.Price >= lowAmount && c.Price <= largAmount);
-            return View(products);
+            var productss = _context.Products
+                .Include(c => c.ProductType)
+                .Include(c => c.SpacialTag).Where(c => c.Price >= lowAmount && c.Price <= largAmount).ToList();
+            if(lowAmount==null || largAmount==null)
+            {
+                 productss = _context.Products
+                .Include(c => c.ProductType)
+                .Include(c => c.SpacialTag).ToList();
+            }
+            return View(productss);
         }
 
         // GET: Admin/Products/Details/5
