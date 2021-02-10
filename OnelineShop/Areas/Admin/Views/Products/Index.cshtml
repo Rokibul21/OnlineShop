@@ -21,7 +21,7 @@
 </form>
 <br/>
 <div>
-    <table class="table border table-striped">
+    <table class="table border table-striped" id="myTable">
         <thead class="table-info">
             <tr>
                 <th>
@@ -79,6 +79,9 @@
 @section scripts{
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
         $(function () {
             var save = '@TempData["Save"]'
             if (save != null) {
