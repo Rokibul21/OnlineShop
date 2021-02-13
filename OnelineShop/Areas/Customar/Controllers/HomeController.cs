@@ -4,16 +4,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnelineShop.Data;
 using OnelineShop.Models;
 
 namespace OnelineShop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         [Area("Customar")]
         public IActionResult Index()
         {
-            return View();
+            var applicationDbContext = _context.Products.Include(p => p.ProductType).Include(p => p.SpacialTag);
+            return View(applicationDbContext.ToList());
         }
 
         public IActionResult Privacy()
