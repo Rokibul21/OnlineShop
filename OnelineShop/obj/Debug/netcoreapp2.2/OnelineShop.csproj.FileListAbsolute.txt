@@ -52,3 +52,4 @@ E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\A
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Products\Edit.g.cshtml.cs
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Products\Details.g.cshtml.cs
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Products\Delete.g.cshtml.cs
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\Home\Detail.g.cshtml.cs

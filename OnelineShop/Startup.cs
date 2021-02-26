@@ -70,7 +70,7 @@ namespace OnelineShop
             {
                 routes.MapRoute(
                   name: "areas",
-                  template: "{area=Customar}/{controller=Home}/{action=Index}/{id?}"
+                  template: "{area=Customar}/{controller=Home}/{action=Index}"
                 );
             });
         }

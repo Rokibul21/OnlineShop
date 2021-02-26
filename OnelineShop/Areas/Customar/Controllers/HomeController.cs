@@ -24,6 +24,23 @@ namespace OnelineShop.Controllers
             return View(applicationDbContext.ToList());
         }
 
+        public IActionResult Detail( int? id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var product = _context.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+            if(product==null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+
+
+
         public IActionResult Privacy()
         {
             return View();
