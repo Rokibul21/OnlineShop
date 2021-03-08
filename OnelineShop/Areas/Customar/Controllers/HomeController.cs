@@ -23,14 +23,14 @@ namespace OnelineShop.Controllers
             var applicationDbContext = _context.Products.Include(p => p.ProductType).Include(p => p.SpacialTag);
             return View(applicationDbContext.ToList());
         }
-
+        [Area("Customar")]
         public IActionResult Detail( int? id)
         {
             if(id==null)
             {
                 return NotFound();
             }
-            var product = _context.Products.Include(c => c.ProductTypes).FirstOrDefault(c => c.Id == id);
+            var product = _context.Products.Include(c => c.ProductType).FirstOrDefault(c => c.Id == id);
             if(product==null)
             {
                 return NotFound();
