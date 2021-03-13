@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnelineShop.Data;
 using OnelineShop.Models;
+using OnelineShop.Utility;
 
 namespace OnelineShop.Controllers
 {
@@ -35,6 +36,31 @@ namespace OnelineShop.Controllers
             {
                 return NotFound();
             }
+            return View(product);
+        }
+
+        [Area("Customar")]
+        [HttpPost]
+        [ActionName("Detail")]
+        public IActionResult ProductDetail(int? id)
+        {
+            List<Products> products = new List<Products>();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var product = _context.Products.Include(c => c.ProductType).FirstOrDefault(c => c.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            products = HttpContext.Session.Get<List<Products>>("products");
+            if(products==null)
+            {
+                products = new List<Products>();
+            }
+            products.Add(product);
+            HttpContext.Session.Set("products", products);
             return View(product);
         }
 
