@@ -53,3 +53,4 @@ E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.d
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.pdb
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csproj.CopyComplete
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\Home\Cart.g.cshtml.cs
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csprojAssemblyReference.cache
