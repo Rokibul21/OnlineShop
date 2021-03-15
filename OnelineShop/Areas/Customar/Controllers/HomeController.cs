@@ -61,10 +61,51 @@ namespace OnelineShop.Controllers
             }
             products.Add(product);
             HttpContext.Session.Set("products", products);
-            return View(product);
+            return RedirectToAction(nameof(Index));
+        }
+        [Area("Customar")]
+        [ActionName("Remove")]
+        public IActionResult RemovetoCart(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                if (product != null)
+                {
+                    products.Remove(product);
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
-
+        [Area("Customar")]
+        [HttpPost]
+        public IActionResult Remove(int? id)
+        {
+            List<Products> products= HttpContext.Session.Get<List<Products>>("products");
+            if(products!=null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                if(product!=null)
+                {
+                    products.Remove(product);
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        [Area("Customar")]
+        public IActionResult Cart()
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if(products==null)
+            {
+                products = new List<Products>();
+            }
+            return View(products); 
+        }
 
 
         public IActionResult Privacy()

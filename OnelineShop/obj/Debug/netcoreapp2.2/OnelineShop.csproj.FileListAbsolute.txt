@@ -5,7 +5,6 @@ E:\Core MVC Course\OnelineShop\OnelineShop\bin\Debug\netcoreapp2.2\OnelineShop.d
 E:\Core MVC Course\OnelineShop\OnelineShop\bin\Debug\netcoreapp2.2\OnelineShop.pdb
 E:\Core MVC Course\OnelineShop\OnelineShop\bin\Debug\netcoreapp2.2\OnelineShop.Views.dll
 E:\Core MVC Course\OnelineShop\OnelineShop\bin\Debug\netcoreapp2.2\OnelineShop.Views.pdb
-E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csprojAssemblyReference.cache
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csproj.CoreCompileInputs.cache
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.RazorAssemblyInfo.cache
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.RazorAssemblyInfo.cs
@@ -53,3 +52,4 @@ E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.V
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.dll
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.pdb
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csproj.CopyComplete
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\Home\Cart.g.cshtml.cs
