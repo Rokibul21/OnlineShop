@@ -8,6 +8,10 @@ namespace OnelineShop.Models
 {
     public class Order
     {
+        public Order()
+        {
+            OrderDetails = new List<OrderDetails>();
+        }
         public int Id { get; set; }
         [Display(Name ="Order No")]
         public string OrderNo { get; set; }

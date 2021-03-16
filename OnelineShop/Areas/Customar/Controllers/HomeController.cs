@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using OnelineShop.Data;
 using OnelineShop.Models;
 using OnelineShop.Utility;
+using X.PagedList;
 
 namespace OnelineShop.Controllers
 {
@@ -19,10 +20,9 @@ namespace OnelineShop.Controllers
             _context = context;
         }
         [Area("Customar")]
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            var applicationDbContext = _context.Products.Include(p => p.ProductType).Include(p => p.SpacialTag);
-            return View(applicationDbContext.ToList());
+            return View(_context.Products.Include(p => p.ProductType).Include(p => p.SpacialTag).ToList().ToPagedList(page??1,9));
         }
         [Area("Customar")]
         public IActionResult Detail( int? id)

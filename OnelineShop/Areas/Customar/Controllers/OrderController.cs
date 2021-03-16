@@ -38,15 +38,15 @@ namespace OnelineShop.Areas.Customar.Controllers
                 }
             }
             order.OrderNo = GetOrederNo();
-            _context.orders.Add(order);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
-            HttpContext.Session.Set("products", null);
+            HttpContext.Session.Set("products",new List<Products>());
             return View();
         }
 
         public string GetOrederNo()
         {
-            int rowCount = _context.orders.ToList().Count() + 1;
+            int rowCount = _context.Orders.ToList().Count() + 1;
             return rowCount.ToString("000");
         }
     }
