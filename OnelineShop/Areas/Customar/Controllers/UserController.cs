@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OnelineShop.Data;
 using OnelineShop.Models;
 
 namespace OnelineShop.Areas.Customar.Controllers
@@ -12,13 +13,15 @@ namespace OnelineShop.Areas.Customar.Controllers
     public class UserController : Controller
     {
         UserManager<IdentityUser> _userManager;
-        public UserController(UserManager<IdentityUser> userManager)
+        ApplicationDbContext _context;
+        public UserController(UserManager<IdentityUser> userManager,ApplicationDbContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
         public IActionResult Index()
         {
-            return View();
+            return View(_context.ApplicationUsers.ToList());
         }
         public async Task<IActionResult> Create()
         {
@@ -41,6 +44,21 @@ namespace OnelineShop.Areas.Customar.Controllers
                 }
             }
             return View();
+        }
+       
+        public IActionResult Detials(string id)
+
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var user =_context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+            if(user==null)
+            {
+                return NotFound();
+            }
+            return View(user);
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿@model OnelineShop.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="text-info">User Details</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dt class="col-sm-2">
+            User Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FristName, Model.LastName)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <label></label>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
+</div>

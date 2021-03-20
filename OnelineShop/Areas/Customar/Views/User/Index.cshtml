@@ -1,10 +1,45 @@
-﻿
+﻿@model IEnumerable<OnelineShop.Models.ApplicationUser>
+
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
+<h2 class="text-info">
+    User List
+</h2>
+<div>
+    <a asp-action="Create" class="btn btn-primary">Add New User</a>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <thead class="table-info">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>User Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FristName, item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    <partial name="PartialView" model="item.Id" />
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @section scripts{
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script type="text/javascript">
