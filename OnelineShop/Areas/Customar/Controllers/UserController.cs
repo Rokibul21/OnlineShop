@@ -9,7 +9,7 @@ using OnelineShop.Models;
 
 namespace OnelineShop.Areas.Customar.Controllers
 {
-    [Area("Customar")]
+    
     public class UserController : Controller
     {
         UserManager<IdentityUser> _userManager;
@@ -19,15 +19,18 @@ namespace OnelineShop.Areas.Customar.Controllers
             _userManager = userManager;
             _context = context;
         }
+        [Area("Customar")]
         public IActionResult Index()
         {
             return View(_context.ApplicationUsers.ToList());
         }
+        [Area("Customar")]
         public async Task<IActionResult> Create()
         {
             return View();
         }
         [HttpPost]
+        [Area("Customar")]
         public async Task<IActionResult> Create(ApplicationUser user)
         {
             if(ModelState.IsValid)
@@ -45,20 +48,49 @@ namespace OnelineShop.Areas.Customar.Controllers
             }
             return View();
         }
-       
-        public IActionResult Detials(string id)
 
+        //public IActionResult Detials(string id)
+
+        //{
+        //    if(id==null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var user =_context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+        //    if(user==null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(user);
+        //}
+        [Area("Customar")]
+        public async Task<IActionResult> Edit(string id)
         {
-            if(id==null)
-            {
-                return NotFound();
-            }
-            var user =_context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
-            if(user==null)
+            var user = _context.ApplicationUsers.FirstOrDefault(c=>c.Id==id);
+            if (user == null)
             {
                 return NotFound();
             }
             return View(user);
+        }
+        [HttpPost]
+        [Area("Customar")]
+        public async Task<IActionResult> Edit(ApplicationUser User)
+        {
+            var userInfo = _context.ApplicationUsers.FirstOrDefault(c => c.Id == User.Id);
+            if(userInfo==null)
+            {
+                return NotFound();
+            }
+            userInfo.FristName = User.FristName;
+            userInfo.LastName = User.LastName;
+            var result = await _userManager.UpdateAsync(userInfo);
+            if (result.Succeeded)
+            {
+                TempData["save"] = "User Has Been Save Successfuly";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(userInfo);
         }
     }
 }
