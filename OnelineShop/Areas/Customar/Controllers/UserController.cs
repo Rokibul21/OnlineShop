@@ -87,5 +87,35 @@ namespace OnelineShop.Areas.Customar.Controllers
             }
             return View(userInfo);
         }
+        public async Task<IActionResult>Lockout(string id)
+        {
+            if(id==null)
+            {
+                return NotFound();
+            }
+            var user= _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+            if(user==null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Lockout(ApplicationUser user)
+        {
+            var userInfo = _context.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
+            if (userInfo == null)
+            {
+                return NotFound();
+            }
+            userInfo.LockoutEnd = DateTime.Now.AddYears(100);
+            int rowAffacted=_context.SaveChanges();
+            if (rowAffacted != null)
+            {
+                TempData["Save"] = "User Has Been Locout Successfuly";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(userInfo);
+        }
     }
 }
