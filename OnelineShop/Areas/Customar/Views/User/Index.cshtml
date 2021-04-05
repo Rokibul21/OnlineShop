@@ -18,7 +18,7 @@
                     Name
                 </th>
                 <th>User Name</th>
-                <th></th>
+                <th>Status</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,9 +32,23 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
-                <td>
-                    <partial name="PartialView" model="item.Id" />
-                </td>
+                @if (item.LockoutEnd > DateTime.Now && item.LockoutEnd != null)
+                {
+                    <td>Inactive</td>
+                    <td style="width:150px">
+                       <a asp-action="Active" class="btn btn-primary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                       <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Active
+                        <partial name="PartialView" model="item.Id" />
+                    </td>
+                    
+                }
+
             </tr>
             }
         </tbody>
