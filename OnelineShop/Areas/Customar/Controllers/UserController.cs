@@ -14,7 +14,7 @@ namespace OnelineShop.Areas.Customar.Controllers
     {
         UserManager<IdentityUser> _userManager;
         ApplicationDbContext _context;
-        public UserController(UserManager<IdentityUser> userManager,ApplicationDbContext context)
+        public UserController(UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _context = context;
@@ -30,7 +30,7 @@ namespace OnelineShop.Areas.Customar.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ApplicationUser user)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var result = await _userManager.CreateAsync(user, user.PasswordHash);
                 if (result.Succeeded)
@@ -62,7 +62,7 @@ namespace OnelineShop.Areas.Customar.Controllers
         }
         public async Task<IActionResult> Edit(string id)
         {
-            var user = _context.ApplicationUsers.FirstOrDefault(c=>c.Id==id);
+            var user = _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -73,7 +73,7 @@ namespace OnelineShop.Areas.Customar.Controllers
         public async Task<IActionResult> Edit(ApplicationUser User)
         {
             var userInfo = _context.ApplicationUsers.FirstOrDefault(c => c.Id == User.Id);
-            if(userInfo==null)
+            if (userInfo == null)
             {
                 return NotFound();
             }
@@ -87,14 +87,14 @@ namespace OnelineShop.Areas.Customar.Controllers
             }
             return View(userInfo);
         }
-        public async Task<IActionResult>Lockout(string id)
+        public async Task<IActionResult> Lockout(string id)
         {
-            if(id==null)
+            if (id == null)
             {
                 return NotFound();
             }
-            var user= _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
-            if(user==null)
+            var user = _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
@@ -109,7 +109,7 @@ namespace OnelineShop.Areas.Customar.Controllers
                 return NotFound();
             }
             userInfo.LockoutEnd = DateTime.Now.AddYears(100);
-            int rowAffacted=_context.SaveChanges();
+            int rowAffacted = _context.SaveChanges();
             if (rowAffacted != null)
             {
                 TempData["Save"] = "User Has Been Locout Successfuly";
@@ -117,10 +117,10 @@ namespace OnelineShop.Areas.Customar.Controllers
             }
             return View(userInfo);
         }
-        public async Task<IActionResult>Active(string id)
+        public async Task<IActionResult> Active(string id)
         {
             var user = _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
-            if(user==null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -140,6 +140,35 @@ namespace OnelineShop.Areas.Customar.Controllers
             if (rowAffacted != null)
             {
                 TempData["Save"] = "User Has Been Active Successfuly";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(userInfo);
+        }
+
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var user = _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ApplicationUser user)
+        {
+            var userInfo = _context.ApplicationUsers.FirstOrDefault(c => c.Id == user.Id);
+            if (userInfo == null)
+            {
+                return NotFound();
+            }
+            _context.ApplicationUsers.Remove(userInfo);
+            int rowAffacted = _context.SaveChanges();
+            if (rowAffacted != null)
+            {
+                TempData["Save"] = "User Has Been Delete Successfuly";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);

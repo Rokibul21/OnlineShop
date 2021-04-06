@@ -95,3 +95,4 @@ E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.p
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csproj.CopyComplete
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csprojAssemblyReference.cache
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\User\Active.g.cshtml.cs
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\User\Delete.g.cshtml.cs
