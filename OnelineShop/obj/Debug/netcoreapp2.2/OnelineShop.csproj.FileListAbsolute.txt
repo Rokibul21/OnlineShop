@@ -96,3 +96,4 @@ E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.c
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\OnelineShop.csprojAssemblyReference.cache
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\User\Active.g.cshtml.cs
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Customar\Views\User\Delete.g.cshtml.cs
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Role\Index.g.cshtml.cs
