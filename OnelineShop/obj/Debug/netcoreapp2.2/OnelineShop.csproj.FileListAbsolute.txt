@@ -100,3 +100,5 @@ E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\A
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Role\Create.g.cshtml.cs
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Role\Edit.g.cshtml.cs
 E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Role\Delete.g.cshtml.cs
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Role\Assign.g.cshtml.cs
+E:\Core MVC Course\OnelineShop\OnelineShop\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Role\UserRoleAssigns.g.cshtml.cs

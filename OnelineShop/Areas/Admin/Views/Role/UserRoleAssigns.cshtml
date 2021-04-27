@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<h2 class="text-info">
+    Assign User Role
+</h2>
+<div>
+    <a asp-action="Assign" class="btn btn-primary">Assign New User Role</a>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <thead class="table-info">
+            <tr>
+                <th>
+                    User Name
+                </th>
+                <th>Role Name</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.UserRole)
+            {
+                <tr>
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        @item.RoleName
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div>
+        <a asp-action="Index" class="btn btn-primary">Index</a>
+    </div>
+</div>
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var save = '@TempData["Save"]'
+            if (save != null) {
+                alertify.success(save);
+            }
+        })
+    </script>
+}

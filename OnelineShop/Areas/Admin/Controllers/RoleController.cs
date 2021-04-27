@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnelineShop.Areas.Admin.Model;
+using OnelineShop.Data;
 
 namespace OnelineShop.Areas.Admin.Controllers
 {
@@ -11,9 +14,17 @@ namespace OnelineShop.Areas.Admin.Controllers
     public class RoleController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        ApplicationDbContext _db;
+        UserManager<IdentityUser> _userManager;
+
+        public object UserRoleAssign { get; private set; }
+
+        public RoleController(RoleManager<IdentityRole> roleManager,UserManager<IdentityUser> userManager, ApplicationDbContext db)
         {
             _roleManager = roleManager;
+            _db = db;
+            _userManager = userManager;
+
         }
         public IActionResult Index()
         {
@@ -103,6 +114,50 @@ namespace OnelineShop.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(role);
+        }
+
+        public async Task<IActionResult> Assign()
+        {
+            ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+            ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Assign(RoleViewModel roleUser)
+        {
+            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == roleUser.UserId);
+            var IsChackRoleAssign = await _userManager.IsInRoleAsync(user, roleUser.RoleId);
+            if (IsChackRoleAssign)
+            {
+                ViewBag.msg = "This User Already Assign this Role";
+                ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+                ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
+                return View();
+            }
+            var role = await _userManager.AddToRoleAsync(user, roleUser.RoleId);
+
+            if (role.Succeeded)
+            {
+                TempData["Save"] = "User Role Has Been Successfuly Assign";
+                return RedirectToAction(nameof(UserRoleAssigns));
+            }
+            return View();
+
+        }
+        public IActionResult UserRoleAssigns()
+        {
+            var result = from ur in _db.UserRoles
+                         join r in _db.Roles on ur.RoleId equals r.Id
+                         join a in _db.ApplicationUsers on ur.UserId equals a.Id
+                         select new UserRoleMapping()
+                         {
+                             UserId = ur.UserId,
+                             RoleId = ur.RoleId,
+                             UserName = a.UserName,
+                             RoleName = r.Name
+                         };
+            ViewBag.UserRole = result;
+            return View();
         }
     }
 }
